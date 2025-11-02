@@ -44,7 +44,7 @@ def validate_students_json():
         if 'promo' in student:
             if not isinstance(student['promo'], int):
                 errors.append(f"Étudiant #{i + 1} : la promo doit être un nombre")
-            elif student['promo'] < 2020 or student['promo'] > 2030:
+            elif student['promo'] < 2010:
                 errors.append(f"Étudiant #{i + 1} : année de promo invalide ({student['promo']})")
 
         if 'github_page' in student:
@@ -54,10 +54,6 @@ def validate_students_json():
             parsed = urlparse(url)
             if not parsed.netloc:
                 errors.append(f"Étudiant #{i + 1} : URL invalide ({url})")
-
-        if 'emoji' in student:
-            if len(student['emoji']) > 4:
-                errors.append(f"Étudiant #{i + 1} : l'emoji est trop long (max 1-2 caractères)")
 
     seen_combinations = set()
     for i, student in enumerate(students):
